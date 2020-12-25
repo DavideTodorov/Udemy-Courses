@@ -2,6 +2,8 @@
     2.Log their values to the console
 */
 
+console.log("Task_01:")
+
 let country = "Bulgaria";
 let continent = "Europe";
 let population = 6000000;
