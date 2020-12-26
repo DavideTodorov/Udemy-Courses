@@ -8,6 +8,6 @@ const marksBMI = marksWeight / marksHeight ** 2;
 const johnsBMI = johnsWeight / johnsHeight ** 2;
 const isMarksBMIHigher = marksBMI > johnsBMI;
 
-console.log("Mark's BMI: " + marksBMI);
-console.log("John's BMI: " + johnsBMI);
+console.log(`Mark's BMI: ${marksBMI.toFixed(3)}`);
+console.log(`John's BMI: ${johnsBMI.toFixed(3)}`);
 console.log("Is Mark's BMI higher? " + isMarksBMIHigher);
