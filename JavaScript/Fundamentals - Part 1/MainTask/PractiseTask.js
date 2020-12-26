@@ -48,3 +48,38 @@ if (language === "English" && population < 50000000 && !isIsland) {
     isSiutableCountry = `${country} doesn't meet your criteria.`;
 }
 console.log(isSiutableCountry);
+
+
+
+/*Use a switchs tatement to log the following string for the given 'language':
+chinese or mandarin: 'MOST number of native speakers!'
+spanish: '2nd place in number of native speakers'
+english: '3rd place'
+hindi: 'Number 4'
+arabic: '5th most spoken language'
+for all othersimply log 'Great language too :D'
+*/
+
+let inputLanguage = prompt("Enter language");
+
+switch (inputLanguage) {
+    case "chinese":
+    case "mandarin":
+        console.log(inputLanguage + ' MOST number of native speakers!');
+        break;
+    case "spanish":
+        console.log('Spanish: 2nd place in number of native speakers');
+        break;
+    case "english":
+        console.log(inputLanguage + ": 3rd place");
+        break;
+    case " hindi":
+        console.log(inputLanguage + ": Number 4");
+        break
+    case "arabic":
+        console.log('5th most spoken language');
+        break;
+    default:
+        console.log('Great language too :D');
+        break;
+}
