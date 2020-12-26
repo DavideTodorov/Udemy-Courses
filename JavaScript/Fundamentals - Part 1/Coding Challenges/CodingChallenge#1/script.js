@@ -13,7 +13,7 @@ console.log(`John's BMI: ${johnsBMI.toFixed(2)}`);
 
 let higherBMIMessage;
 
-if (marksBMI > johnsBMI) {
+if (isMarksBMIHigher) {
     higherBMIMessage = `Mark's BMI (${marksBMI.toFixed(1)}) is higher than John's BMI (${johnsBMI.toFixed(1)})!`;
 }else{
     higherBMIMessage = `John's BMI (${johnsBMI.toFixed(1)}) is higher than Mark's BMI (${marksBMI.toFixed(1)})!`;
