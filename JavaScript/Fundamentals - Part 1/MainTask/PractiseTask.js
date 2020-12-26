@@ -31,6 +31,10 @@ if (population > averagePopulation) {
 console.log(populationMessage);
 
 
+//The same with thernany operator
+console.log(`${country}'s population is ${population > 33000000 ? "above" : "below"} average!`);
+
+
 const numOfCountryNeighbours = 3; //Number(prompt('How many neighbour countries does your country have?'));
 if (numOfCountryNeighbours === 1) {
     console.log("Only 1 border!");
