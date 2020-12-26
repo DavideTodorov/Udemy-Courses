@@ -30,8 +30,8 @@ if (population > averagePopulation) {
 
 console.log(populationMessage);
 
-const numOfCountryNeighbours = Number(prompt('How many neighbour countries does your country have?'));
 
+const numOfCountryNeighbours = 3; //Number(prompt('How many neighbour countries does your country have?'));
 if (numOfCountryNeighbours === 1) {
     console.log("Only 1 border!");
 } else if (numOfCountryNeighbours > 1) {
@@ -39,3 +39,12 @@ if (numOfCountryNeighbours === 1) {
 } else {
     console.log("No borders.")
 }
+
+
+let isSiutableCountry;
+if (language === "English" && population < 50000000 && !isIsland) {
+    isSiutableCountry = `You should live in ${country}`;
+} else {
+    isSiutableCountry = `${country} doesn't meet your criteria.`;
+}
+console.log(isSiutableCountry);
