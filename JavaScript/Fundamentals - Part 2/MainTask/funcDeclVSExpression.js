@@ -25,4 +25,14 @@ const percentageOfWorld2 = function (currPopulation) {
 }
 
 const currPopulationPercentage2 = percentageOfWorld2(1441000000);
-console.log(`${currPopulationPercentage.toFixed(1)}%`);
+console.log(`${currPopulationPercentage2.toFixed(1)}%`);
+
+/*
+LECTURE: Arrow Functions
+1. Recreate the last assignment, but this time create an arrow function called
+'percentageOfWorld3'
+*/
+
+const percentageOfWorld3 = currPopulation => currPopulation / 7900000000 * 100;
+const currPopulationPercentage3 = percentageOfWorld3(1441000000);
+console.log(`${currPopulationPercentage3.toFixed(1)}%`);
