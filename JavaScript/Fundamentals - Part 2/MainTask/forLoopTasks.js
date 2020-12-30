@@ -41,6 +41,28 @@ for (let i = 0; i < populations.length; i++) {
 
 console.log(percentages);
 
-if(percentages.length === populations.length){
+if (percentages.length === populations.length) {
     console.log("Both arrays have the same length!")
+}
+
+
+/*
+LECTURE: Looping Backwards and Loops in Loops
+
+    1. Store this array of arrays into a variable called 'listOfNeighbours'
+[['Canada', 'Mexico'], ['Spain'], ['Norway', 'Sweden',
+'Russia']];
+
+    2. Log only the neighbouring countries to the console, one by one, not the entire
+arrays. Log a string like 'Neighbour: Canada' for each country
+*/
+
+const listOfNeighbours = [['Canada', 'Mexico'], ['Spain'], ['Norway', 'Sweden', 'Russia']];
+
+for (let outerIndex = 0; outerIndex < listOfNeighbours.length; outerIndex++) {
+    let innerArr = listOfNeighbours[outerIndex];
+    
+    for (let innerIndex = 0; innerIndex < innerArr.length; innerIndex++) {
+        console.log(`Neighbour: ${innerArr[innerIndex]}`);
+    }
 }
