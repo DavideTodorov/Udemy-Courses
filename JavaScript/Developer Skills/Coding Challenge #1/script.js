@@ -22,7 +22,7 @@ const temperatures = [12, 5,-5,0,4];
 
 const printForecast = function (temperatures) {
   for (let i = 0; i < temperatures.length; i++) {
-    console.log(`It will be ${temperatures[i]} degrees in ${i + 1} days.\n`);
+    console.log(`It will be ${temperatures[i]}ºC in ${i + 1} days.\n`);
   }
 };
 
