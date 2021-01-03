@@ -1,18 +1,69 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
 body {
   background-color: bisque;
   font-size: 20px;
   font-family: Times;
+  margin: 50px;
 }
 
-.first {
-  font-size: 20px;
+h1 {
+  padding-bottom: 25px;
+  text-align: center;
 }
 
-#enter-your-name {
-  font-size: 30px;
+div {
+  margin-left: 10px;
+  padding-left: 5px;
+  font-size: 22px;
+}
+
+p {
+  padding-bottom: 10px;
+}
+
+h2 {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  text-align: center;
+}
+
+img {
+  width: 400px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#link {
+  font-style: italic;
 }
 
 #your-name {
-    background-color: rgb(245, 182, 105);
-    border: 5px solid #444444;
+  background-color: rgb(245, 182, 105);
+  border: 5px solid #444444;
+  width: 500px;
+}
+
+#your-name h2 {
+  padding-top: 5px;
+  text-align: center;
+  color: red;
+
+}
+
+#your-name input,
+button,
+p {
+  padding: 5px;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+#your-name p {
+  font-size: 25px;
 }
