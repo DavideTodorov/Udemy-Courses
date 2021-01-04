@@ -1,12 +1,25 @@
 "use strict";
 
-const numToGuess = Math.trunc(Math.random() * 20) + 1;
+//Generate random number to guess in range [1...20]
+let numToGuess = Math.trunc(Math.random() * 20) + 1;
+
+//Logic for Again button
+document.querySelector(".again").addEventListener("click", function () {
+  numToGuess = Math.trunc(Math.random() * 20) + 1;
+  document.querySelector(".score").textContent = 20;
+
+  document.querySelector("body").style.backgroundColor = "#222";
+  document.querySelector(".number").style.width = "15rem";
+  document.querySelector(".message").textContent = "Start guessing...";
+  document.querySelector(".guess").value = "";
+  document.querySelector(".number").textContent = "?";
+});
+
 
 let currScore = Number(document.querySelector(".score").textContent);
 
-//todo: remove
-document.querySelector(".number").textContent = numToGuess;
 
+//Check button logic
 document.querySelector(".check").addEventListener("click", function () {
   const enteredNum = Number(document.querySelector(".guess").value);
 
@@ -18,12 +31,9 @@ document.querySelector(".check").addEventListener("click", function () {
     //If there is a win condition
   } else if (enteredNum === numToGuess) {
     document.querySelector(".message").textContent = "Correct number!";
-
-    document.querySelector("body").style.backgroundColor = 
-    "#60b347";
-
+    document.querySelector("body").style.backgroundColor = "#60b347";
     document.querySelector(".number").style.width = "30rem";
-
+    document.querySelector(".number").textContent = numToGuess;
 
     //If entered num is greater than the num to guess
   } else if (enteredNum > numToGuess) {
@@ -35,7 +45,6 @@ document.querySelector(".check").addEventListener("click", function () {
     document.querySelector(".message").textContent = "Too low!";
     currScore--;
   }
-
 
   //If your score goes to 0
   if (currScore <= 0) {
