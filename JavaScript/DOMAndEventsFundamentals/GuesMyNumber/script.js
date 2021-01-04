@@ -1,7 +1,13 @@
 "use strict";
 
+const displayMessage = function (message) {
+  document.querySelector(".message").textContent = message;
+};
+
+
 //Generate random number to guess in range [1...20]
 let numToGuess = Math.trunc(Math.random() * 20) + 1;
+
 
 //Logic for Again button
 document.querySelector(".again").addEventListener("click", function () {
@@ -9,15 +15,17 @@ document.querySelector(".again").addEventListener("click", function () {
   document.querySelector(".score").textContent = 20;
   currScore = 20;
 
+  displayMessage("Start guessing...");
   document.querySelector("body").style.backgroundColor = "#222";
   document.querySelector(".number").style.width = "15rem";
-  document.querySelector(".message").textContent = "Start guessing...";
   document.querySelector(".guess").value = "";
   document.querySelector(".number").textContent = "?";
 });
 
+
 let currScore = 20;
 let highscore = 0;
+
 
 //Check button logic
 document.querySelector(".check").addEventListener("click", function () {
@@ -25,12 +33,12 @@ document.querySelector(".check").addEventListener("click", function () {
 
   //If input is invalid or empty
   if (enteredNum < 1 || enteredNum > 20) {
-    document.querySelector(".message").textContent =
-      "Enter number between 1 and 20!";
+    displayMessage("Enter number between 1 and 20!");
 
+    
     //If there is a win condition
   } else if (enteredNum === numToGuess) {
-    document.querySelector(".message").textContent = "Correct number!";
+    displayMessage("Correct number!");
     document.querySelector("body").style.backgroundColor = "#60b347";
     document.querySelector(".number").style.width = "30rem";
     document.querySelector(".number").textContent = numToGuess;
@@ -41,21 +49,23 @@ document.querySelector(".check").addEventListener("click", function () {
       document.querySelector(".highscore").textContent = highscore;
     }
 
+
     //If entered num is greater than the num to guess
   } else if (enteredNum > numToGuess) {
-    document.querySelector(".message").textContent = "Too high!";
+    displayMessage("Too high!");
     currScore--;
+
 
     //If entered num is lower than the num to guess
   } else if (enteredNum < numToGuess) {
-    document.querySelector(".message").textContent = "Too low!";
+    displayMessage("Too low!");
     currScore--;
   }
 
+
   //If your score goes to 0
   if (currScore <= 0) {
-    document.querySelector(".message").textContent =
-      'Your score is 0! You lost! Press "Again" to play again!';
+    displayMessage("Your score is 0! You lost! Press \"Again\" to play again!");
     document.querySelector(".check").disabled = true;
   }
 
