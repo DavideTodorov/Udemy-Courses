@@ -7,6 +7,7 @@ let numToGuess = Math.trunc(Math.random() * 20) + 1;
 document.querySelector(".again").addEventListener("click", function () {
   numToGuess = Math.trunc(Math.random() * 20) + 1;
   document.querySelector(".score").textContent = 20;
+  currScore = 20;
 
   document.querySelector("body").style.backgroundColor = "#222";
   document.querySelector(".number").style.width = "15rem";
@@ -15,9 +16,8 @@ document.querySelector(".again").addEventListener("click", function () {
   document.querySelector(".number").textContent = "?";
 });
 
-
-let currScore = Number(document.querySelector(".score").textContent);
-
+let currScore = 20;
+let highscore = 0;
 
 //Check button logic
 document.querySelector(".check").addEventListener("click", function () {
@@ -34,6 +34,12 @@ document.querySelector(".check").addEventListener("click", function () {
     document.querySelector("body").style.backgroundColor = "#60b347";
     document.querySelector(".number").style.width = "30rem";
     document.querySelector(".number").textContent = numToGuess;
+
+    //Update highscore
+    if (currScore > highscore) {
+      highscore = currScore;
+      document.querySelector(".highscore").textContent = highscore;
+    }
 
     //If entered num is greater than the num to guess
   } else if (enteredNum > numToGuess) {
