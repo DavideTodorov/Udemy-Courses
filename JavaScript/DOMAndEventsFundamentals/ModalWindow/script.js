@@ -21,3 +21,9 @@ for (let i = 0; i < buttonsShowModal.length; i++) {
 
 buttonCloseModal.addEventListener("click", closeModal);
 overlay.addEventListener("click", closeModal);
+
+document.addEventListener("keyup", function (e) {
+  if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+    closeModal();
+  }
+});
