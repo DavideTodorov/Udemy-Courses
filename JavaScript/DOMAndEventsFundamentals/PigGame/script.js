@@ -18,18 +18,27 @@ const player1Element = document.querySelector(".player--1");
 //Starting conditions
 diceImgElement.classList.add("hidden");
 
+//Winner handling
+const checkForWinner = function (player, currScore) {
+  if (currScore >= 15) {
+    player.classList.add("player--winner");
+    holdButton.disabled = true;
+    rollDiceButton.disabled = true;
+    diceImgElement.classList.add("hidden");
+  }
+};
+
 //Switch player logic
 const switchPlayer = function (currPlayerScore, diceNumber) {
   if (player0Element.classList.contains("player--active")) {
     if (diceNumber !== 1) {
       currPlayerScore += Number(player0Score.textContent);
 
-      if(currPlayerScore >= 100){
-        player0Element.classList.add("player--winner");
-      }
+      checkForWinner(player0Element, currPlayerScore);
 
       player0Score.textContent = currPlayerScore;
     }
+
     player0CurrentScore.textContent = 0;
     player0Element.classList.remove("player--active");
     player1Element.classList.add("player--active");
@@ -38,12 +47,11 @@ const switchPlayer = function (currPlayerScore, diceNumber) {
     if (diceNumber !== 1) {
       currPlayerScore += Number(player1Score.textContent);
 
-      if(currPlayerScore >= 100){
-        player1Element.classList.add("player--winner");
-      }
+      checkForWinner(player1Element, currPlayerScore);
 
       player1Score.textContent = currPlayerScore;
     }
+
     player1CurrentScore.textContent = 0;
     player1Element.classList.remove("player--active");
     player0Element.classList.add("player--active");
@@ -106,4 +114,7 @@ newGameButton.addEventListener("click", function () {
   player1Element.classList.remove("player--winner");
 
   diceImgElement.classList.add("hidden");
+
+  holdButton.disabled = false;
+  rollDiceButton.disabled = false;
 });
