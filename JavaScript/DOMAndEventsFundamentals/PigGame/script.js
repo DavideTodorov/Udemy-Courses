@@ -20,7 +20,7 @@ diceImgElement.classList.add("hidden");
 
 //Winner handling
 const checkForWinner = function (player, currScore) {
-  if (currScore >= 15) {
+  if (currScore >= 100) {
     player.classList.add("player--winner");
     holdButton.disabled = true;
     rollDiceButton.disabled = true;
@@ -62,7 +62,6 @@ const switchPlayer = function (currPlayerScore, diceNumber) {
 //Method to handle Dice behaviour
 let currentScore = 0;
 const handleDiceBehaviour = function (diceNum) {
-  diceImgElement.classList.remove("hidden");
   diceImgElement.src = `dice-${diceNum}.png`;
 
   if (diceNum !== 1) {
