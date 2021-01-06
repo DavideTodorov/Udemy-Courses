@@ -23,6 +23,11 @@ const switchPlayer = function (currPlayerScore, diceNumber) {
   if (player0Element.classList.contains("player--active")) {
     if (diceNumber !== 1) {
       currPlayerScore += Number(player0Score.textContent);
+
+      if(currPlayerScore >= 100){
+        player0Element.classList.add("player--winner");
+      }
+
       player0Score.textContent = currPlayerScore;
     }
     player0CurrentScore.textContent = 0;
@@ -32,6 +37,11 @@ const switchPlayer = function (currPlayerScore, diceNumber) {
   } else if (player1Element.classList.contains("player--active")) {
     if (diceNumber !== 1) {
       currPlayerScore += Number(player1Score.textContent);
+
+      if(currPlayerScore >= 100){
+        player1Element.classList.add("player--winner");
+      }
+
       player1Score.textContent = currPlayerScore;
     }
     player1CurrentScore.textContent = 0;
@@ -91,6 +101,9 @@ newGameButton.addEventListener("click", function () {
 
   player0Element.classList.add("player--active");
   player1Element.classList.remove("player--active");
+
+  player0Element.classList.remove("player--winner");
+  player1Element.classList.remove("player--winner");
 
   diceImgElement.classList.add("hidden");
 });
