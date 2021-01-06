@@ -8,7 +8,7 @@ const player0Score = document.getElementById("score--0");
 const player1Score = document.getElementById("score--1");
 
 const player0CurrentScore = document.getElementById("current--0");
-const player1CurrnetScore = document.getElementById("current--1");
+const player1CurrentScore = document.getElementById("current--1");
 
 const player0Element = document.querySelector(".player--0");
 const player1Element = document.querySelector(".player--1");
@@ -17,24 +17,26 @@ const player1Element = document.querySelector(".player--1");
 diceImgElement.classList.add("hidden");
 
 //Roll dice number
-const switchPlayer = function (currPlayerScore) {
+const switchPlayer = function (currPlayerScore, diceNumber) {
   if (player0Element.classList.contains("player--active")) {
-    if (currentScore !== 0) {
+    if (diceNumber !== 1) {
       currPlayerScore += Number(player0Score.textContent);
       player0Score.textContent = currPlayerScore;
     }
     player0CurrentScore.textContent = 0;
     player0Element.classList.remove("player--active");
     player1Element.classList.add("player--active");
+    currentScore = 0;
 
   } else if (player1Element.classList.contains("player--active")) {
-    if (currentScore !== 0) {
+    if (diceNumber !== 1) {
       currPlayerScore += Number(player1Score.textContent);
       player1Score.textContent = currPlayerScore;
     }
     player1CurrentScore.textContent = 0;
     player1Element.classList.remove("player--active");
     player0Element.classList.add("player--active");
+    currentScore = 0;
   }
 };
 
@@ -44,7 +46,7 @@ const handleDiceBehaviour = function (diceNum) {
   diceImgElement.classList.remove("hidden");
   diceImgElement.src = `dice-${diceNum}.png`;
 
-  player0CurrentScore.textContent = currentScore;
+
   if (diceNum !== 1) {
     //increase score
     currentScore += diceNum;
@@ -52,12 +54,12 @@ const handleDiceBehaviour = function (diceNum) {
     if (player0Element.classList.contains("player--active")) {
       player0CurrentScore.textContent = currentScore;
     } else {
-      player1CurrnetScore.textContent = currentScore;
+      player1CurrentScore.textContent = currentScore;
     }
     
   } else {
     //switch players
-    switchPlayer(currentScore);
+    switchPlayer(currentScore, 1);
   }
 };
 
