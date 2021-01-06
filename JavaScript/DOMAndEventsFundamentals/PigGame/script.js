@@ -17,16 +17,29 @@ const player1Element = document.querySelector(".player--1");
 diceImgElement.classList.add("hidden");
 
 //Roll dice number
-const switchPlayer = function (player, currPlayerScore) {
-  if(player.classList.contains("player--0")){
-    currentScore =  
-  }else{
+const switchPlayer = function (currPlayerScore) {
+  if (player0Element.classList.contains("player--active")) {
+    if (currentScore !== 0) {
+      currPlayerScore += Number(player0Score.textContent);
+      player0Score.textContent = currPlayerScore;
+    }
+    player0CurrentScore.textContent = 0;
+    player0Element.classList.remove("player--active");
+    player1Element.classList.add("player--active");
 
+  } else if (player1Element.classList.contains("player--active")) {
+    if (currentScore !== 0) {
+      currPlayerScore += Number(player1Score.textContent);
+      player1Score.textContent = currPlayerScore;
+    }
+    player1CurrentScore.textContent = 0;
+    player1Element.classList.remove("player--active");
+    player0Element.classList.add("player--active");
   }
 };
 
+//Method to handle Dice behaviour
 let currentScore = 0;
-
 const handleDiceBehaviour = function (diceNum) {
   diceImgElement.classList.remove("hidden");
   diceImgElement.src = `dice-${diceNum}.png`;
@@ -41,11 +54,14 @@ const handleDiceBehaviour = function (diceNum) {
     } else {
       player1CurrnetScore.textContent = currentScore;
     }
+    
   } else {
     //switch players
+    switchPlayer(currentScore);
   }
 };
 
+//Roll Dice Button
 rollDiceButton.addEventListener("click", function () {
   if (diceImgElement.classList.contains("hidden")) {
     diceImgElement.classList.remove("hidden");
