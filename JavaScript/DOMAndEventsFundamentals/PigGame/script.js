@@ -2,29 +2,47 @@
 
 //Select elements
 const diceImgElement = document.querySelector(".dice");
-const rollDiceButton = document.querySelector(".btn.btn--roll");
+const rollDiceButton = document.querySelector(".btn--roll");
 
+const player0Score = document.getElementById("score--0");
+const player1Score = document.getElementById("score--1");
+
+const player0CurrentScore = document.getElementById("current--0");
+const player1CurrnetScore = document.getElementById("current--1");
+
+const player0Element = document.querySelector(".player--0");
+const player1Element = document.querySelector(".player--1");
 
 //Starting conditions
 diceImgElement.classList.add("hidden");
 
-
 //Roll dice number
-const handleDicePicDisplay = function (diceNum) {
-  diceImgElement.classList.remove("hidden");
+const switchPlayer = function (player, currPlayerScore) {
+  if(player.classList.contains("player--0")){
+    currentScore =  
+  }else{
 
-  if (diceNum === 1) {
-    diceImgElement.src = "dice-1.png";
-  } else if (diceNum === 2) {
-    diceImgElement.src = "dice-2.png";
-  } else if (diceNum === 3) {
-    diceImgElement.src = "dice-3.png";
-  } else if (diceNum === 4) {
-    diceImgElement.src = "dice-4.png";
-  } else if (diceNum === 5) {
-    diceImgElement.src = "dice-5.png";
-  } else if (diceNum === 6) {
-    diceImgElement.src = "dice-6.png";
+  }
+};
+
+let currentScore = 0;
+
+const handleDiceBehaviour = function (diceNum) {
+  diceImgElement.classList.remove("hidden");
+  diceImgElement.src = `dice-${diceNum}.png`;
+
+  player0CurrentScore.textContent = currentScore;
+  if (diceNum !== 1) {
+    //increase score
+    currentScore += diceNum;
+
+    if (player0Element.classList.contains("player--active")) {
+      player0CurrentScore.textContent = currentScore;
+    } else {
+      player1CurrnetScore.textContent = currentScore;
+    }
+  } else {
+    //switch players
   }
 };
 
@@ -33,7 +51,7 @@ rollDiceButton.addEventListener("click", function () {
     diceImgElement.classList.remove("hidden");
   }
 
-  let randomDiceNumber = Math.trunc(Math.random() * 6) + 1;
+  const randomDiceNumber = Math.trunc(Math.random() * 6) + 1;
 
-  handleDicePicDisplay(randomDiceNumber);
+  handleDiceBehaviour(randomDiceNumber);
 });
