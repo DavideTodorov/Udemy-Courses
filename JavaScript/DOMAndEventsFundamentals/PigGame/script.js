@@ -4,12 +4,12 @@
 const diceImgElement = document.querySelector(".dice");
 const rollDiceButton = document.querySelector(".btn.btn--roll");
 
+
 //Starting conditions
 diceImgElement.classList.add("hidden");
 
-//Roll dice implementation
-let randomDiceNumber = Math.trunc(Math.random() * 6) + 1;
 
+//Roll dice number
 const handleDicePicDisplay = function (diceNum) {
   diceImgElement.classList.remove("hidden");
 
@@ -27,3 +27,13 @@ const handleDicePicDisplay = function (diceNum) {
     diceImgElement.src = "dice-6.png";
   }
 };
+
+rollDiceButton.addEventListener("click", function () {
+  if (diceImgElement.classList.contains("hidden")) {
+    diceImgElement.classList.remove("hidden");
+  }
+
+  let randomDiceNumber = Math.trunc(Math.random() * 6) + 1;
+
+  handleDicePicDisplay(randomDiceNumber);
+});
