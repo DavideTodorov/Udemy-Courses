@@ -74,7 +74,7 @@ const game = {
 
   printGoals: function (...players) {
     for (let i = 0; i < players.length; i++) {
-      console.log(`${players[i]} scored! Total goals: ${i + 1}`);
+      console.log(`Goal ${i + 1}: ${players[i]}! `);
     }
   },
 };
@@ -102,10 +102,20 @@ const { team1: team1Odd, x: xOdd, team2: team2Odd } = game.odds;
 console.log(team1Odd, xOdd, team2Odd);
 
 //6
-game.printGoals("Davies", "Muller", "Lewandowski", "Kimmich");
+// game.printGoals("Davies", "Muller", "Lewandowski", "Kimmich");
 const playersScored = game.scored;
 game.printGoals(...playersScored);
 
 //7
 team1Odd < team2Odd && console.log("Team 1 is more likely to win!");
 team1Odd > team2Odd && console.log("Team 2 is more likely to win!");
+
+//Coding Challenge #2:
+//1
+let averageOdd = 0;
+for (const odd of Object.values(game.odds)) {
+  averageOdd += odd;
+}
+
+averageOdd /= 3;
+console.log("Average odd: " + averageOdd.toFixed(2));
