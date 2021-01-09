@@ -32,8 +32,32 @@ const restaurant = {
     );
   },
 };
+//The Rest operator
+function findSum(...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+  console.log(sum);
+}
 
-//The Spread operator
+findSum(1, 2, 3);
+findSum(1, 2, 3, 4, 5);
+findSum(...[5, 6]);
+
+function orderPizza(mainIngredient, ...others) {
+  console.log(
+    `You ordered pizza with main ingredient ${mainIngredient} and secondary ingredients: ${others.join(
+      ", "
+    )}.`
+  );
+}
+
+orderPizza("Mushrooms", ...["Cheese", "Meat"]);
+
+/*
+//====================
+//The Spread operator:
 const mainMenu = [...restaurant.mainMenu];
 const mainMenuExtended = ["Gnocci", ...mainMenu, "Fish"];
 console.log(mainMenuExtended);
@@ -53,7 +77,7 @@ for (let i = 1; i <= 3; i++) {
 
 orderPasta(...ingredients);
 
-/*
+
 //=======================
 //Objects desctructuring:
 const { name: restaurantName, openingHours } = restaurant;
