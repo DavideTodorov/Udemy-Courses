@@ -32,7 +32,18 @@ const restaurant = {
     );
   },
 };
-//The Rest operator
+
+//==============
+//Array looping:
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const [index, element] of menu.entries()) {
+  console.log(`${index + 1}: ${element}`);
+}
+
+/*
+//==================
+//The Rest operator:
 function findSum(...numbers) {
   let sum = 0;
   for (let i = 0; i < numbers.length; i++) {
@@ -55,7 +66,7 @@ function orderPizza(mainIngredient, ...others) {
 
 orderPizza("Mushrooms", ...["Cheese", "Meat"]);
 
-/*
+
 //====================
 //The Spread operator:
 const mainMenu = [...restaurant.mainMenu];
