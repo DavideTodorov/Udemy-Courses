@@ -33,6 +33,28 @@ const restaurant = {
   },
 };
 
+//The Spread operator
+const mainMenu = [...restaurant.mainMenu];
+const mainMenuExtended = ["Gnocci", ...mainMenu, "Fish"];
+console.log(mainMenuExtended);
+
+//spread for passing arguments
+function orderPasta(ingredient1, ingredient2, ingredient3) {
+  console.log(
+    `You ordered pasta with ${ingredient1}, ${ingredient2} and ${ingredient3}.`
+  );
+}
+
+const ingredients = [];
+for (let i = 1; i <= 3; i++) {
+  const currIngredient = prompt(`Ingredient ${i}`);
+  ingredients.push(currIngredient);
+}
+
+orderPasta(...ingredients);
+
+/*
+//=======================
 //Objects desctructuring:
 const { name: restaurantName, openingHours } = restaurant;
 console.log(restaurantName);
@@ -60,3 +82,4 @@ console.log(starterMeal + ", " + mainMeal);
 //Mutating
 [starterMeal, mainMeal] = [mainMeal, starterMeal];
 console.log(starterMeal + ", " + mainMeal);
+*/
