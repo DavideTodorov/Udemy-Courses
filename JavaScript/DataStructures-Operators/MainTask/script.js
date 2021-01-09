@@ -33,6 +33,27 @@ const restaurant = {
   },
 };
 
+//==================
+//Optional chaining:
+
+//Variables
+const weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+const openingHours = restaurant.openingHours;
+
+for (const day of weekdays) {
+  const message = `We open at ${openingHours[day]?.open ?? "closed"}`;
+  console.log(message);
+}
+
+//Methods
+console.log(restaurant.orderPasta?.(1, 2) ?? "No such method");
+
+//Arrays
+const arr = [{ name: "Dave", age: 20 }];
+console.log(arr[0]?.name ?? "No such person");
+console.log(arr[1]?.name ?? "No such person");
+
+/*
 //==============
 //Array looping:
 const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
@@ -41,7 +62,6 @@ for (const [index, element] of menu.entries()) {
   console.log(`${index + 1}: ${element}`);
 }
 
-/*
 //==================
 //The Rest operator:
 function findSum(...numbers) {
