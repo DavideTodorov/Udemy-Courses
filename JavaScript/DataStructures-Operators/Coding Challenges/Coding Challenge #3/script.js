@@ -34,21 +34,21 @@ const gameEvents = new Map([
 ]);
 
 //1
-const events = [new Set([...gameEvents])];
+const events = [...new Set([...gameEvents.values()])];
 console.log(events);
 
 //2
-const eventsMap = new Map(...events);
-eventsMap.delete(64);
-console.log(eventsMap);
+gameEvents.delete(64);
+console.log(gameEvents);
 
 //3
-const averageOccurenceOfEvent = 90 / eventsMap.size;
+const time = [...gameEvents.keys()].pop();
+const averageOccurenceOfEvent = time / gameEvents.size;
 console.log(`An event happened, on
-average, every ${averageOccurenceOfEvent} minutes.`);
+average, every ${averageOccurenceOfEvent.toFixed(2)} minutes.`);
 
 //4
-for (const [key, value] of eventsMap) {
+for (const [key, value] of gameEvents) {
   let half = "[FIRST HALF]";
   if (key > 45) {
     half = "[SECOND HALF]";
