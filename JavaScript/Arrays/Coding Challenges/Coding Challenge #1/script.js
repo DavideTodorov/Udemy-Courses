@@ -27,8 +27,8 @@ Test data:
 § Data 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
 */
 
-const checkDogs = function (dogsAges) {
-  const filteredDogsArr = dogsAges.slice(1, -2);
+const checkDogs = function (juliaDogs, kateDogs) {
+  const filteredDogsArr = juliaDogs.slice(1, -2).concat(kateDogs.slice(1, -2));
 
   filteredDogsArr.forEach(function (dogAge, i) {
     const message =
@@ -43,8 +43,4 @@ const checkDogs = function (dogsAges) {
 const juliaData = [3, 5, 2, 12, 7];
 const kateData = [4, 1, 15, 8, 3];
 
-console.log("Julia's data:");
-checkDogs(juliaData);
-
-console.log("\nKate's data:");
-checkDogs(kateData);
+checkDogs(juliaData, kateData);
