@@ -6,7 +6,9 @@
 //     ['GBP', 'Pound sterling'],
 //   ]);
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+/*
+//==============
+//Array methods:
 
 let arr = ["a", "b", "c", "d", "e"];
 let arr2 = ["j", "i", "h", "g", "f"];
@@ -29,3 +31,19 @@ console.log(allLeters);
 
 //Join method
 console.log(allLeters.join(", "));
+*/
+
+//================
+//Arrays: forEach:
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+movements.forEach(function (movement, i) {
+  let message = `Movement ${i + 1}: `;
+  if (movement > 0) {
+    message += `You deposited ${movement}$.`;
+  } else {
+    message += `You withdrew ${Math.abs(movement)}$.`;
+  }
+
+  console.log(message);
+});
