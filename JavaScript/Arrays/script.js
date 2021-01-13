@@ -1,15 +1,7 @@
 "use strict";
 
-// const currencies = new Map([
-//     ['USD', 'United States dollar'],
-//     ['EUR', 'Euro'],
-//     ['GBP', 'Pound sterling'],
-//   ]);
-
-/*
-//==============
+//===============
 //Array methods:
-
 let arr = ["a", "b", "c", "d", "e"];
 let arr2 = ["j", "i", "h", "g", "f"];
 
@@ -31,9 +23,8 @@ console.log(allLeters);
 
 //Join method
 console.log(allLeters.join(", "));
-*/
 
-//================
+//=================
 //Arrays: forEach:
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
@@ -46,4 +37,24 @@ movements.forEach(function (movement, i) {
   }
 
   console.log(message);
+});
+
+//========================
+//Maps and Sets: forEach:
+//Maps:
+const currencies = new Map([
+  ["USD", "United States dollar"],
+  ["EUR", "Euro"],
+  ["GBP", "Pound sterling"],
+]);
+
+currencies.forEach(function (val, key) {
+  console.log(`${key}: ${val}`);
+});
+
+//Sets:
+const currenciesUnique = new Set(["USD", "GBP", "USD", "EUR", "EUR"]);
+console.log(currenciesUnique);
+currenciesUnique.forEach(function (val, _, set) {
+  console.log(val);
 });
