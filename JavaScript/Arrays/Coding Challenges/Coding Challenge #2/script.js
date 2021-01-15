@@ -23,7 +23,7 @@ Test data:
 */
 
 const calcAverageHumanAge = function (dogAges) {
-  const humanAges = dogAges
+  const humanAgesAverage = dogAges
     .map(function (dog) {
       if (dog <= 2) {
         return dog * 2;
@@ -31,14 +31,11 @@ const calcAverageHumanAge = function (dogAges) {
         return 16 + dog * 4;
       }
     })
-    .filter((dog) => dog >= 18);
+    .filter((dog) => dog >= 18)
+    .reduce((acc, age, i, arr) => acc + age / arr.length, 0);
 
-  const sumOfHumanAges = humanAges.reduce(function (acc, age) {
-    return acc + age;
-  }, 0);
-
-  const averageAge = sumOfHumanAges / humanAges.length;
-  console.log(averageAge.toFixed(2));
+  return humanAgesAverage;
 };
 
-calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+const avg = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+console.log(avg.toFixed(2));
