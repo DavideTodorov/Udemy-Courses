@@ -75,22 +75,20 @@ if (sarahDog.curFood <= sarahDog.recommendedFoodPorion * 0.9) {
 //3
 console.log("\n=== Task 3:");
 const checkIfDogEatsTooMuch = function (dog) {
-  return dog.curFood >= dog.recommendedFoodPorion * 1.1;
+  return dog.curFood >= dog.recommendedFoodPorion;
 };
 
 const checkIfDogEatsTooLittle = function (dog) {
-  return dog.curFood <= dog.recommendedFoodPorion * 0.9;
+  return dog.curFood < dog.recommendedFoodPorion;
 };
 
 const ownersEatTooMuch = dogs
   .filter((dog) => checkIfDogEatsTooMuch(dog))
-  .map((dog) => dog.owners.flat())
-  .flat(1);
+  .flatMap((dog) => dog.owners.flat());
 
 const ownersEatTooLittle = dogs
   .filter((dog) => checkIfDogEatsTooLittle(dog))
-  .map((dog) => dog.owners.flat())
-  .flat(1);
+  .flatMap((dog) => dog.owners.flat());
 
 console.log(ownersEatTooMuch);
 console.log(ownersEatTooLittle);
