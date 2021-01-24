@@ -41,9 +41,22 @@ class PersonCl {
 }
 
 const jessica = new PersonCl("Jessica Davis", 1995);
-
 console.log(jessica);
-
 jessica.calcAge();
-
 console.log(jessica.fullName);
+
+//Inheritance
+const Student = function (firstName, birthYear, course) {
+  Person.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+Student.prototype = Object.create(Person.prototype);
+Student.prototype.constructor = Student;
+
+Student.prototype.introduce = function () {
+  console.log(`I am ${this.firstName}`);
+};
+
+const mike = new Student("Mike", 2000, "IT");
+console.dir(Student.prototype.constructor)
