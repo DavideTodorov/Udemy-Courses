@@ -68,6 +68,10 @@ class CarCl {
     this.speed = speed;
   }
 
+  brake() {
+    this.speed -= 5;
+  }
+
   get speedUs() {
     return this.speed / 1.6;
   }
@@ -140,3 +144,35 @@ class. Then experiment with chaining!
 Test data:
   § Data car 1: 'Rivian' going at 120 km/h, with a charge of 23%
 */
+
+class EVCl extends CarCl {
+  #charge;
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.#charge = charge;
+  }
+
+  accelerate() {
+    this.speed += 20;
+    this.#charge -= 1;
+    console.log(
+      `${this.make} going at ${this.speed}km/h, with a charge of ${
+        this.#charge
+      }%`
+    );
+    return this;
+  }
+
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    return this;
+  }
+
+  brake() {
+    this.speed -= 5;
+    return this;
+  }
+}
+
+const rivian = new EVCl("Rivian", 120, 23);
+rivian.accelerate().brake().accelerate().chargeBattery(50);

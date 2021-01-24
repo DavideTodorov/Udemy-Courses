@@ -59,4 +59,41 @@ Student.prototype.introduce = function () {
 };
 
 const mike = new Student("Mike", 2000, "IT");
-console.dir(Student.prototype.constructor)
+
+//Inheritance with ES6 classes
+
+class StudentCl extends PersonCl {
+  constructor(firstName, birthYear, course) {
+    super(firstName, birthYear);
+    this.course = course;
+  }
+
+  calcAge() {
+    console.log(`${this._fullName} is ${2021 - this.birthYear} years old.`);
+  }
+}
+
+const alice = new StudentCl("Alice Red", 2003, "IT");
+alice.calcAge();
+
+//Object.create inheritance
+const CarProto = {
+  init(make, year) {
+    this.make = make;
+    this.year = year;
+  },
+
+  displayCar() {
+    console.log(`This ${this.make} was made in ${this.year}`);
+  },
+};
+
+const SportCarProto = Object.create(CarProto);
+SportCarProto.init = function (make, year, hp) {
+  CarProto.init.call(this, make, year);
+  this.hp = hp;
+};
+
+const audi = Object.create(SportCarProto);
+audi.init("Audi", 2015, 200);
+audi.displayCar();
