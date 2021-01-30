@@ -3,20 +3,9 @@
 const btn = document.querySelector(".btn-country");
 const countriesContainer = document.querySelector(".countries");
 
-///////////////////////////////////////
-//AJAX XMLHHTPRequest
-const getCountryData = function (country) {
-  const request = new XMLHttpRequest();
-
-  request.open("GET", `https://restcountries.eu/rest/v2/name/${country}`);
-  request.send();
-
-  request.addEventListener("load", function () {
-    const [data] = JSON.parse(this.responseText);
-    console.log(data);
-
-    const html = `
-        <article class="country">
+const renderCountry = function (data, type = "") {
+  const html = `
+        <article class="country ${type}">
           <img class="country__img" src="${data.flag}" />
           <div class="country__data">
             <h3 class="country__name">${data.name}</h3>
@@ -32,11 +21,103 @@ const getCountryData = function (country) {
         </article>
   `;
 
-    countriesContainer.insertAdjacentHTML("beforeend", html);
-    countriesContainer.style.opacity = 1;
+  countriesContainer.insertAdjacentHTML("beforeend", html);
+  countriesContainer.style.opacity = 1;
+};
+
+//==========================================================
+//AJAX XMLHttpRequest
+const getCountryData = function (country) {
+  const request = new XMLHttpRequest();
+
+  request.open("GET", `https://restcountries.eu/rest/v2/name/${country}`);
+  request.send();
+
+  request.addEventListener("load", function () {
+    const [data] = JSON.parse(this.responseText);
+    console.log(data);
+
+    renderCountry(data);
   });
 };
 
-getCountryData("bulgaria");
-getCountryData("italy");
-getCountryData("usa");
+// getCountryData("bulgaria");
+// getCountryData("italy");
+// getCountryData("usa");
+
+const getCountryAndNeighbour = function (country) {
+  const request = new XMLHttpRequest();
+
+  request.open("GET", `https://restcountries.eu/rest/v2/name/${country}`);
+  request.send();
+
+  request.addEventListener("load", function () {
+    const [data] = JSON.parse(this.responseText);
+    console.log(data);
+
+    //Render country
+    renderCountry(data);
+
+    //Render neighbour
+    const [neighbour] = data.borders;
+
+    if (!neighbour) return;
+
+    const neighbourRequest = new XMLHttpRequest();
+    neighbourRequest.open(
+      "GET",
+      `https://restcountries.eu/rest/v2/alpha/${neighbour}`
+    );
+    neighbourRequest.send();
+
+    neighbourRequest.addEventListener("load", function () {
+      const data2 = JSON.parse(this.responseText);
+
+      renderCountry(data2, "neighbour");
+    });
+  });
+};
+
+// getCountryAndNeighbour("bulgaria");
+
+//Fetch API
+// fetch(`https://restcountries.eu/rest/v2/name/bulgaria`)
+//   .then((response) => response.json())
+//   .then((data) => {
+//     const country = data[0];
+//     renderCountry(country);
+
+//     const neighbour = country.borders[0];
+
+//     return fetch(`https://restcountries.eu/rest/v2/alpha/${neighbour}`);
+//   })
+//   .then((response) => response.json())
+//   .then((data) => renderCountry(data, "neighbour"));
+
+//Handling rejected promises
+const getCountryDataFetch = function () {
+  fetch(`https://restcountries.eu/rest/v2/name/bulgaria`)
+    .then((response) => response.json())
+    .then((data) => {
+      const country = data[0];
+      renderCountry(country);
+
+      const neighbour = country.borders[0];
+
+      return fetch(`https://restcountries.eu/rest/v2/alpha/${neighbour}`);
+    })
+    .then((response) => response.json())
+    .then((data) => renderCountry(data, "neighbour"))
+    .catch((err) => {
+      console.error(err);
+      countriesContainer.insertAdjacentText(
+        "beforeend",
+        "Something went wrong!"
+      );
+      countriesContainer.style.opacity = 1;
+    });
+};
+
+btn.addEventListener("click", function () {
+  getCountryDataFetch("bulgaria");
+});
