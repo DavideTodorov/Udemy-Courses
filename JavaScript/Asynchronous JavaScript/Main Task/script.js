@@ -133,9 +133,55 @@ const whereAmI = async function (country) {
 
     const [countryData] = await countryResponse.json();
     renderCountry(countryData);
+    return `${countryData.capital}`;
   } catch (err) {
     alert(err.message);
+    throw err;
   }
 };
 
-whereAmI(prompt("Enter country: "));
+// whereAmI(prompt("Enter country: "));
+
+// (async function () {
+//   try {
+//     const capital = await whereAmI(prompt("Enter country: "));
+//     console.log(capital);
+//   } catch (err) {
+//     console.error(err);
+//   } finally {
+//     console.log("Finished");
+//   }
+// })();
+
+const getJSON = async function (url, errorMsg = "Something went wrong") {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`${errorMsg} (${response.status})`);
+  return await response.json();
+};
+
+const getCountriesCapitals = async function (c1, c2, c3) {
+  try {
+    // const [data1] = await getJSON(
+    //   `https://restcountries.eu/rest/v2/name/${c1}`
+    // );
+    // const [data2] = await getJSON(
+    //   `https://restcountries.eu/rest/v2/name/${c2}`
+    // );
+    // const [data3] = await getJSON(
+    //   `https://restcountries.eu/rest/v2/name/${c3}`
+    // );
+    // console.log([data1.capital, data2.capital, data3.capital]);
+
+    const data = await Promise.all([
+      getJSON(`https://restcountries.eu/rest/v2/name/${c1}`),
+      getJSON(`https://restcountries.eu/rest/v2/name/${c2}`),
+      getJSON(`https://restcountries.eu/rest/v2/name/${c3}`),
+    ]);
+
+    console.log(data.map((c) => c[0].capital));
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+getCountriesCapitals("bulgaria", "greece", "turkey");
