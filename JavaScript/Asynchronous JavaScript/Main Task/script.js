@@ -121,3 +121,21 @@ const getCountryDataFetch = function () {
 btn.addEventListener("click", function () {
   getCountryDataFetch("bulgaria");
 });
+
+//Async - await
+const whereAmI = async function (country) {
+  try {
+    const countryResponse = await fetch(
+      `https://restcountries.eu/rest/v2/name/${country}`
+    );
+
+    if (!countryResponse.ok) throw new Error(`Country "${country}" not found`);
+
+    const [countryData] = await countryResponse.json();
+    renderCountry(countryData);
+  } catch (err) {
+    alert(err.message);
+  }
+};
+
+whereAmI(prompt("Enter country: "));
